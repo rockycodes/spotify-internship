@@ -16,7 +16,7 @@ function changePossibilities(target, denoms) {
   denoms.sort((a, b) => a - b).forEach((num) => {
     if (sortedDenoms.indexOf(num) === -1) sortedDenoms.push(num)
   })
-  return sortedChangePossibilities(target, sortedDenoms);
+  return sortedChangePossibilities(target, sortedDenoms)
 }
 
 function sortedChangePossibilities(target, sortedDenoms, memo = {}) {
@@ -35,21 +35,21 @@ function sortedChangePossibilities(target, sortedDenoms, memo = {}) {
   else {
     //Want to subtract each denomination from the target number, starting with the largest, and then do the same recursively on all remainders.
     for (let i = sortedDenoms.length - 1; i >= 0; i--) {
-      let remainder = target - sortedDenoms[i];
+      let remainder = target - sortedDenoms[i]
       //Check if this value/denoms combo already exists in your memo (you have already computed it) and use that if it does.
       if (memo[key]) {
         counter += memo[key]
         //Break out of the loop to prevent duplicate counts.
-        break;
+        break
       }
       //If you have not already computed this value/denoms combo, call the function recursively on the remainder and slice the denoms array to avoid duplication (eg. If you have already done 3-2-2, you don't want to also count 2-3-2. This solution avoids that by chopping the numbers off the array once all solutions have been found that start with that number.)
       else {
-        counter += sortedChangePossibilities(remainder, sortedDenoms.slice(0, i + 1), memo);
+        counter += sortedChangePossibilities(remainder, sortedDenoms.slice(0, i + 1), memo)
       }
     }
   }
   //If the memo key does not already exist, add it.
-  if (!memo[key]) memo[key] = counter;
+  if (!memo[key]) memo[key] = counter
   return counter;
 }
 
@@ -57,4 +57,4 @@ function sortedChangePossibilities(target, sortedDenoms, memo = {}) {
 var start = new Date().getTime();
 console.log("memoChange", changePossibilities(1000, [1, 2, 3]))
 var end = new Date().getTime();
-console.log("time in miliseconds...", end - start)
+console.log("time in miliseconds...", end - start);

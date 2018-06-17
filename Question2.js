@@ -46,5 +46,5 @@ function decodeStrings(str) {
 }
 
 console.log(decodeStrings('4[ab]'))
-console.log(decodeStrings('3[b2[ca]]'))
+console.log(decodeStrings('3[b2[ca]]'));
 
